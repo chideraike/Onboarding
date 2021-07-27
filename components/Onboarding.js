@@ -7,7 +7,7 @@ import Paginator from '../components/Paginator';
 import NextButton from '../components/NextButton';
 import slides from '../slides';
 
-export default Onboarding = () => {
+export default Onboarding = ({ finished }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
     const slidesRef = useRef(null);
@@ -24,6 +24,7 @@ export default Onboarding = () => {
         } else {
             try {
                 await AsyncStorage.setItem('@viewedOnboarding', 'true');
+                finished()
             } catch (err) {
                 console.log('Error @setItem: ', err);
             }

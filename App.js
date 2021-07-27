@@ -38,7 +38,17 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {loading ? <Loading /> : viewedOnboarding ? <HomeScreen /> : <Onboarding />}
+      {loading ? <Loading /> : (
+        viewedOnboarding ? (
+          <HomeScreen
+            clear={() => setViewedOnboarding(false)}
+          />
+        ) : (
+          <Onboarding
+            finished={() => setViewedOnboarding(true)}
+          />
+        )
+      )}
       <StatusBar style="auto" />
     </View>
   );
